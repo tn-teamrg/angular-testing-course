@@ -5,9 +5,9 @@ describe('CalculatorService', () => {
 
   it('should add two numbers', () => {
 
-    // NOTE: test to see logger only have been called only once
-    const logger = new LoggerService();
-    spyOn(logger, 'log');
+    // NOTE: LoggerService.log() to using fake objects
+    const logger = jasmine.createSpyObj('LoggerService', ['log']);
+
     const calculator = new CalculatorService(logger);
     const result = calculator.add(2, 2);
     expect(result).toBe(4, 'Unexpected addition result');
