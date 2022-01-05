@@ -31,4 +31,21 @@ describe('CoursesService', () => {
     req.flush({ payload: Object.values(COURSES) });
   });
 
+  it('should retrieve course by id', () => {
+    courseService.findCourseById(12)
+      .subscribe(course => {
+        expect(course).toBeTruthy();
+        expect(course.id).toBe(12);
+      });
+
+    const req = httpTestingController.expectOne('/api/courses/12');
+    expect(req.request.method).toEqual('GET');
+    req.flush(COURSES[12]);
+  });
+
+  afterEach(() => {
+
+    httpTestingController.verify();
+  });
+
 });
