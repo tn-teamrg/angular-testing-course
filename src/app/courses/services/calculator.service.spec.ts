@@ -1,6 +1,7 @@
 import {CalculatorService} from './calculator.service';
 import {LoggerService} from './logger.service';
 import {TestBed} from '@angular/core/testing';
+import {InjectFlags, ProviderToken} from '@angular/core';
 
 describe('CalculatorService', () => {
   let calculator: CalculatorService,
@@ -17,7 +18,8 @@ describe('CalculatorService', () => {
       ]
     });
 
-    calculator = TestBed.get(CalculatorService);
+    // NOTE: TestBed.inject() has type safety
+    calculator = TestBed.inject(CalculatorService);
   });
 
   it('should add two numbers', () => {
